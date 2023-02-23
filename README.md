@@ -2,6 +2,7 @@
  # Rules for GitHub  
 1. Make sure someone else reviews and merges your code  
 2. BRANCHES, don't work on main unless we're all working on it together(ie. over Zoom, in person)  
+3. VSCode is very useful for tracking changes, can clone repo from there, I suggest adding the extension Git Graph
 
 -----
 
