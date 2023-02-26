@@ -1,6 +1,6 @@
 #include <LiquidCrystal.h>
 
-//display code
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 //arcade font
 byte arcadeA[8] = {
