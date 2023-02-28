@@ -1,6 +1,6 @@
-#include <LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 
-//display code
+LiquidCrystal_I2C lcd(0x3F,16,2);
 
 //arcade font
 byte arcadeA[8] = {
@@ -248,7 +248,6 @@ byte arcade0[8] = {
 
 
 void setup() {
-  lcd.begin(16, 2);
   lcd.createChar(0, arcadeA);
   lcd.createChar(1, arcadeC);
   lcd.createChar(2, arcadeE);
@@ -272,33 +271,39 @@ void setup() {
   lcd.createChar(20, arcade9);
   lcd.createChar(21, arcade0);
 
+  lcd.init();
+  lcd.clear();
+  lcd.backlight();
+
   //print GAME OVER
-  lcd.setCursor(6,0);
-  lcd.write((byte)3);
+  lcd.print("GAME OVER!");
+  // lcd.setCursor(6,0);
+  // lcd.write((byte)3);
 
-  lcd.setCursor(7,0);
-  lcd.write((byte)0);
+  // lcd.setCursor(7,0);
+  // lcd.write((byte)0);
 
-  lcd.setCursor(8,0);
-  lcd.write((byte)6);
+  // lcd.setCursor(8,0);
+  // lcd.write((byte)6);
 
-  lcd.setCursor(9,0);
-  lcd.write((byte)2);
+  // lcd.setCursor(9,0);
+  // lcd.write((byte)2);
 
-  lcd.setCursor(6,1);
-  lcd.write((byte)8);
+  // lcd.setCursor(6,1);
+  // lcd.write((byte)8);
 
-  lcd.setCursor(7,1);
-  lcd.write((byte)11);
+  // lcd.setCursor(7,1);
+  // lcd.write((byte)11);
 
-  lcd.setCursor(8,1);
-  lcd.write((byte)2);
+  // lcd.setCursor(8,1);
+  // lcd.write((byte)2);
 
-  lcd.setCursor(9,1);
-  lcd.write((byte)9);
+  // lcd.setCursor(9,1);
+  // lcd.write((byte)9);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  //print GAME OVER
+  
 }
