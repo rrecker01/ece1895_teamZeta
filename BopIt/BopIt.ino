@@ -57,10 +57,11 @@ void setup() {
 
 void loop() {
   //pregame behavior
+  lcd.clear();
   if(start == false){
     prevIn = 0;
     turn = 0;
-    inDelay = 650;
+    inDelay = 1000;
     randomSeed(analogRead(0));
     for(int i = 0 ; i < 99 ; i++){
       gameMap[i] = random(1,4);
@@ -98,9 +99,9 @@ void loop() {
       if(gameMap[turn] == 1){
         prevIn = JSWiggled()*1;
       }else if(gameMap[turn] == 2){
-        prevIn = buttonBlue()*2;
+        prevIn = (buttonBlue()||buttonRed())*2;
       }else if(gameMap[turn] == 3){
-        prevIn = buttonRed()*3;
+        prevIn = (buttonRed()||buttonBlue())*3;
       }else if(gameMap[turn] == 4){
         prevIn = pinIn()*4;
       }
@@ -114,14 +115,14 @@ void loop() {
         player.play(5);
       }   
       turn += 1;
-      delay(500);   
+      delay(1000);   
     }else{
       lcd.clear();
       lcd.setCursor(6,0);
       lcd.print("GAME");
       lcd.setCursor(6,1);
       lcd.print("OVER");
-      delay(500);
+      delay(1000);
       lcd.clear();
       lcd.setCursor(4, 0);
       lcd.print("HI SCORE");
@@ -132,7 +133,7 @@ void loop() {
           player.play(4);
         lcd.write(turn);          
       }
-      delay(500);
+      delay(1000);
       start = 0;
     }  
 
@@ -143,6 +144,7 @@ void loop() {
       lcd.print("YOU");
       lcd.setCursor(6,1);
       lcd.print("WIN");
+      delay(500);
       lcd.clear();
       lcd.setCursor(4,0);
       lcd.print("HI SCORE");
@@ -153,7 +155,7 @@ void loop() {
           player.play(4);
         lcd.write(turn);          
       }
-      delay(500);
+      delay(1000);
       start = 0;
     }
   }
@@ -167,13 +169,14 @@ bool JSWiggled(){
 }
 
 bool pinIn(){
+
   return digitalRead(pinball);
 }
 
 bool buttonBlue(){
-  return digitalRead(DDRUp) && digitalRead(DDRDown);
+  return digitalRead(DDRUp) || digitalRead(DDRDown);
 }
 
 bool buttonRed(){
-  return digitalRead(DDRLeft) && digitalRead(DDRRight);
+  return digitalRead(DDRLeft) || digitalRead(DDRRight);
 }
